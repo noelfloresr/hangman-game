@@ -40,9 +40,6 @@ window.onload = function(){
         generateCurrentWord();
     };
     
-       
-    countTries = currentWord.length;
-    elementCountTries.innerText = countTries;
 
     var createInputs = function(){
         for(var i=0; i < currentWord.length; i++){
@@ -54,6 +51,7 @@ window.onload = function(){
 
     if(confirmLoad){
         hitsPosition = JSON.parse(localStorage["hitsPosition"]);
+        countTries = localStorage["countTries"];
         for(var x = 0; x < currentWord.length; x++){
             var currentInput = document.getElementsByClassName("custom-input")[x];
             for (var y = 0; y < hitsPosition.length; y++){
@@ -65,7 +63,11 @@ window.onload = function(){
                 }
             }                                                   
         }
+    }else{
+        countTries = currentWord.length;
     }
+
+    elementCountTries.innerText = countTries;
 
     //Add click event to letters
     for(var i=0; i<currentLetter.length; i++){
@@ -109,7 +111,7 @@ window.onload = function(){
     saveGameButton.addEventListener("click", function(){
         localStorage["currentWord"] = JSON.stringify(currentWord);
         localStorage["hitsPosition"] = JSON.stringify(hitsPosition);
-
+        localStorage["countTries"] = countTries;
         console.log(localStorage["hitsPosition"]);
     });
 
