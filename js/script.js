@@ -1,6 +1,4 @@
 window.onload = function(){
-    var cargarJuegoAnterior = false;
-
     var currentWord = [];
     var wordFromLocal = localStorage["currentWord"];
     var db = ["mesa", "casa", "algo", "ciudad", "pais", "managua", "masaya", "carro","ooqia"];
@@ -28,7 +26,7 @@ window.onload = function(){
     //Decide to load from local
     //console.log(wordFromLocal.length);
     if(wordFromLocal != undefined){
-        if(confirm("Le gustaría cargar el juego anterior?")){
+        if(confirm("Le gustaría cargar el último juego guardado?")){
             currentWord = JSON.parse(wordFromLocal);
         }else{
             generateCurrentWord();
