@@ -93,15 +93,8 @@ window.onload = function(){
     var saveGameButton = document.getElementById("save-game");
     saveGameButton.addEventListener("click", function(){
         localStorage["currentWord"] = JSON.stringify(currentWord);
-        
-        wordFromLocal = JSON.parse(wordFromLocal);
-        console.log(wordFromLocal);
     });
 
-    var loadGame = document.getElementById("load-game");
-    loadGame.addEventListener("click", function(){
-        debugger;
-        cargarJuegoAnterior = true;
-    });
+    
 }
 
