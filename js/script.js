@@ -14,16 +14,27 @@ window.onload = function(){
     var randomWord = function(){
         var x = Math.floor(Math.random() * db.length);
         return x;
-    }
+    };
 
-    //Decide to load from local
-    if(confirm("Le gustaría cargar el juego anterior?")){
-        currentWord = JSON.parse(wordFromLocal);
-    }else{
+    var generateCurrentWord = function(){
         randomWord();
         var randomX = randomWord();
         currentWord = db[randomX].split('');
+    };
+
+    //Decide to load from local
+    //console.log(wordFromLocal.length);
+    if(wordFromLocal != undefined){
+        if(confirm("Le gustaría cargar el juego anterior?")){
+            currentWord = JSON.parse(wordFromLocal);
+        }else{
+            generateCurrentWord();
+        }
+    }else{
+        generateCurrentWord();
     }
+    
+    
     
     countTries = currentWord.length;
     elementCountTries.innerText = countTries;
