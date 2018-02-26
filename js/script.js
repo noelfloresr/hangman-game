@@ -11,6 +11,8 @@ window.onload = function(){
     var inputContainer = document.getElementById("input-container");
     var elementCountTries = document.getElementById("countTries");
     var currentLetter = document.getElementsByClassName("letter");
+    var letterContainer = document.getElementById("letter-container");
+    var gameOver = document.getElementById("img-gameover");
 
     var randomWord = function(){
         var x = Math.floor(Math.random() * db.length);
@@ -82,10 +84,9 @@ window.onload = function(){
                 }
             }else{
                 elementCountTries.innerText = 0;
-                var gameOver = document.getElementById("img-gameover");
                 gameOver.classList.remove('d-none');
-                document.getElementById("letter-container").classList.remove("d-flex");
-                document.getElementById("letter-container").classList.add("d-none");
+                letterContainer.classList.remove("d-flex");
+                letterContainer.classList.add("d-none");
             }
         });
     }
