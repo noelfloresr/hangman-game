@@ -14,6 +14,7 @@ window.onload = function(){
     var letterContainer = document.getElementById("letter-container");
     var gameOver = document.getElementById("img-gameover");
     var lost = document.getElementById("img-loser");
+    var winner = document.getElementById("img-winner");
 
     var randomWord = function(){
         var x = Math.floor(Math.random() * db.length);
@@ -53,13 +54,14 @@ window.onload = function(){
 
     if(confirmLoad){
         hitsPosition = JSON.parse(localStorage["hitsPosition"]);
-        console.log(hitsPosition);
         for(var x = 0; x < currentWord.length; x++){
-            debugger;
             var currentInput = document.getElementsByClassName("custom-input")[x];
             for (var y = 0; y < hitsPosition.length; y++){
                 if(currentWord[x].toUpperCase() == hitsPosition[y]){
-                    currentInput.value = currentWord[x]; 
+                    debugger;
+                    var letter = currentWord[x];
+                    currentInput.value = currentWord[x].toUpperCase(); 
+                    document.getElementById(letter).classList.add('disabled');
                 }
             }                                                   
         }
@@ -88,8 +90,6 @@ window.onload = function(){
                     }, 1000)
                 }else{
                     hitsPosition.push(this.innerText);
-                    console.log(hitsPosition);
-                    var winner = document.getElementById("img-winner");
                     winner.classList.add('d-block');
                     setTimeout(function(){
                         winner.classList.remove('d-block');
@@ -105,9 +105,11 @@ window.onload = function(){
         });
     }
     var saveGameButton = document.getElementById("save-game");
+
     saveGameButton.addEventListener("click", function(){
         localStorage["currentWord"] = JSON.stringify(currentWord);
         localStorage["hitsPosition"] = JSON.stringify(hitsPosition);
+
         console.log(localStorage["hitsPosition"]);
     });
 
