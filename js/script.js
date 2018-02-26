@@ -10,6 +10,7 @@ window.onload = function(){
     //Dom Elements
     var inputContainer = document.getElementById("input-container");
     var elementCountTries = document.getElementById("countTries");
+    var currentLetter = document.getElementsByClassName("letter");
 
     var randomWord = function(){
         var x = Math.floor(Math.random() * db.length);
@@ -47,9 +48,7 @@ window.onload = function(){
 
     createInputs();
 
-    var currentLetter = document.getElementsByClassName("letter");
-    console.log(currentLetter);
-
+    //Add click event to letters
     for(var i=0; i<currentLetter.length; i++){
         currentLetter[i].addEventListener("click", function(){
             if(countTries > 1){
