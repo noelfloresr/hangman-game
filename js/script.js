@@ -1,21 +1,31 @@
 window.onload = function(){
-    
+    var cargarJuegoAnterior = false;
+
+    var currentWord = [];
+    var wordFromLocal = localStorage["currentWord"];
     var db = ["mesa", "casa", "algo", "ciudad", "pais", "managua", "masaya", "carro","ooqia"];
+    var countWins = 0;
+    var countTries = 0;
+
+    //Dom Elements
+    var inputContainer = document.getElementById("input-container");
+    var elementCountTries = document.getElementById("countTries");
 
     var randomWord = function(){
         var x = Math.floor(Math.random() * db.length);
         return x;
     }
 
-    randomWord();
+    //Decide to load from local
+    if(confirm("Le gustaría cargar el juego anterior?")){
+        currentWord = JSON.parse(wordFromLocal);
+    }else{
+        randomWord();
+        var randomX = randomWord();
+        currentWord = db[randomX].split('');
+    }
     
-    var randomX = randomWord();
-    var currentWord = db[randomX].split('');
-    
-    var countWins = 0;
-    var inputContainer = document.getElementById("input-container");
-    var countTries = currentWord.length;
-    var elementCountTries = document.getElementById("countTries")
+    countTries = currentWord.length;
     elementCountTries.innerText = countTries;
 
     var createInputs = function(){
@@ -69,5 +79,18 @@ window.onload = function(){
             }
         });
     }
+    var saveGameButton = document.getElementById("save-game");
+    saveGameButton.addEventListener("click", function(){
+        localStorage["currentWord"] = JSON.stringify(currentWord);
+        
+        wordFromLocal = JSON.parse(wordFromLocal);
+        console.log(wordFromLocal);
+    });
+
+    var loadGame = document.getElementById("load-game");
+    loadGame.addEventListener("click", function(){
+        debugger;
+        cargarJuegoAnterior = true;
+    });
 }
 
